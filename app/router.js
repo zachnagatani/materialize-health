@@ -6,6 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('search-results');
+  this.route('todays-food');
 });
 
 export default Router;
