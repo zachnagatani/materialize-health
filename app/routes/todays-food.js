@@ -19,7 +19,7 @@ export default Ember.Route.extend({
 
   			this.set(caloriesPath, this.get(caloriesPath) - Math.round(todaysPath[index].fields.nf_calories));
 
-  			todaysPath.removeObject(todaysPath[index]);
+  			todaysPath.removeAt(index);
 
   			// Because Ember adds its own meta-object to the array,
   			// check to see if its length is zero. The length property
