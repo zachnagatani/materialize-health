@@ -30,8 +30,8 @@ export default Ember.Component.extend({
 		},
 
 		createItem() {
-			var store = this.get('store');
-			var customItem = store.createRecord('item', {
+			let store = this.get('store');
+			let customItem = store.createRecord('item', {
 				name: $('#custom-item-name').val(),
 				calories: $('#custom-item-calories').val()
 			});

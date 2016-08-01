@@ -11,6 +11,8 @@ export default Ember.Route.extend({
 
 	actions: {
 		addCalories(index) {
+			let store = this.get('store');
+
 			// Store correct properties for easy access
 			let caloriesPath = 'healthData.calories';
 			let resultsPath = this.get('healthData').results;
@@ -24,6 +26,13 @@ export default Ember.Route.extend({
   			this.set(caloriesPath, this.get(caloriesPath) + Math.round(resultsPath[index].fields.nf_calories));
 
   			this.set('healthData.foodAdded', true);
+
+  			let newItem = store.createRecord('item', {
+  				name: resultsPath[index].fields.item_name,
+  				calories: resultsPath[index].fields.nf_calories
+  			});
+
+  			newItem.save();
 		},
 
 		hideResults() {
