@@ -16,6 +16,13 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    firebase: {
+      apiKey: "AIzaSyBVhzAQpnRynHD8W7SP07lw1eW4Z3LuMYI",
+      authDomain: "materialize-health.firebaseapp.com",
+      databaseURL: "https://materialize-health.firebaseio.com",
+      storageBucket: "materialize-health.appspot.com",
     }
   };
 

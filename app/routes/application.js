@@ -44,6 +44,8 @@ export default Ember.Route.extend({
 						// item.itemID = itemID
 						results.pushObject(item);
 					});
+
+					console.log(data);
 				}
 			}).fail(function() {
 				alert('CRAP');
