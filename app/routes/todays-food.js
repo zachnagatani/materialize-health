@@ -30,6 +30,15 @@ export default Ember.Route.extend({
   				self.set('healthData.foodAdded', false);
   			}
 
+  			let store = this.get('store');
+
+  			store.findRecord('calories', 'userCals')
+			.then(function(userCals) {
+				userCals.set('total', userCals.get('total') - item.get('calories'));
+				userCals.save();
+				console.log(userCals.get('total'));
+			});
+
   			item.destroyRecord();
 		},
 

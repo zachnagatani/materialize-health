@@ -32,6 +32,13 @@ export default Ember.Route.extend({
   				calories: resultsPath[index].fields.nf_calories
   			});
 
+  			store.findRecord('calories', 'userCals')
+			.then(function(userCals) {
+				userCals.set('total', userCals.get('total') + resultsPath[index].fields.nf_calories);
+				userCals.save();
+				console.log(userCals.get('total'));
+			});
+
   			newItem.save();
 		},
 
