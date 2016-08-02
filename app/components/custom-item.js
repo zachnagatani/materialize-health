@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+	healthData: Ember.inject.service('health-data'),
 
 	model() {
 		return this.get('healthData');
@@ -30,13 +31,26 @@ export default Ember.Component.extend({
 		},
 
 		createItem() {
-			let inputCalories = $('#custom-item-calories');
+			// let caloriesPath = 'healthData.calories';
+
+			// Turn the input into a number
+			let inputCalories = Number($('#custom-item-calories').val());
+
+  			// this.set(caloriesPath, this.get(caloriesPath) + Math.round(inputCalories));
+
+  			this.set('healthData.foodAdded', true);
 
 			let store = this.get('store');
 
 			let customItem = store.createRecord('item', {
 				name: $('#custom-item-name').val(),
-				calories: inputCalories.val()
+				calories: inputCalories
+			});
+
+			store.findRecord('calories', 'userCals')
+			.then(function(userCals) {
+				userCals.set('total', userCals.get('total') + inputCalories);
+				userCals.save();
 			});
 
 			customItem.save();

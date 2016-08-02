@@ -6,8 +6,10 @@ export default Ember.Route.extend({
 
 	// Hook the health-data service in as a model to use on my page
 	model() {
-		return this.get('healthData');
+		return this.store.findAll('calories');
 	},
+
+	healthData: Ember.inject.service(),
 
 	actions: {
 		// Action when search button his pressed

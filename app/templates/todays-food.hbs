@@ -18,13 +18,13 @@
 
 			<tbody>
 				{{!-- Use index to grab index of result --}}
-			{{#each model as |item|}}
+			{{#each model as |item index|}}
 				<tr class="item-row">
 					<td class="item-name">{{item.name}}</td>
 					<td class="calories">{{item.calories}}</td>
 					<td class="add-button">
 						{{!-- Pass index into addCalories action to grab correct item --}}
-						<button type="button" class="btn btn-add red darken-4" {{action 'removeItem' item}}>Remove</button>
+						<button type="button" class="btn btn-add red darken-4" {{action 'removeItem' item index}}>Remove</button>
 					</td>
 				</tr>
 			{{/each}}
