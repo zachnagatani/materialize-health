@@ -32,7 +32,7 @@ export default Ember.Component.extend({
 
 		createItem() {
 			// let caloriesPath = 'healthData.calories';
-			if (!$('#custom-item-name').val() || $('#custom-item-calories')) {
+			if (!$('#custom-item-name').val() || !$('#custom-item-calories')) {
 				alert('Please enter an item name and calorie count.');
 			}
 
