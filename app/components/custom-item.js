@@ -30,10 +30,13 @@ export default Ember.Component.extend({
 		},
 
 		createItem() {
+			let inputCalories = $('#custom-item-calories');
+
 			let store = this.get('store');
+
 			let customItem = store.createRecord('item', {
 				name: $('#custom-item-name').val(),
-				calories: $('#custom-item-calories').val()
+				calories: inputCalories.val()
 			});
 
 			customItem.save();
