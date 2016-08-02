@@ -6,7 +6,7 @@
 		<button class="btn btn-block btn-lg btn-warning red darken-4" {{action 'hideResults'}}>Hide</button>
 	</div>
 </div>
-{{#if model.foodAdded}}
+{{!-- {{#if model.foodAdded}} --}}
 <div class="row">
 	<div class="col s10 offset-s1">
 		<table class="table table-striped" id="todays-table">
@@ -18,13 +18,13 @@
 
 			<tbody>
 				{{!-- Use index to grab index of result --}}
-			{{#each model.todaysFood as |item index|}}
+			{{#each model as |item|}}
 				<tr class="item-row">
-					<td class="item-name">{{item.fields.item_name}}</td>
-					<td class="calories">{{item.fields.nf_calories}}</td>
+					<td class="item-name">{{item.name}}</td>
+					<td class="calories">{{item.calories}}</td>
 					<td class="add-button">
 						{{!-- Pass index into addCalories action to grab correct item --}}
-						<button type="button" class="btn btn-add red darken-4" {{action 'removeItem' index}}>Remove</button>
+						<button type="button" class="btn btn-add red darken-4" {{action 'removeItem' item}}>Remove</button>
 					</td>
 				</tr>
 			{{/each}}
@@ -33,13 +33,13 @@
 	</div>
 </div>
 
-{{else}}
+{{!-- {{else}}
 <div class="row">
 	<div class="col s12 center-align">
 		<p class="lead">You haven't eaten anything today!</p>
 		<p>Search for a food and add it to today's totals to see it reflected here.</p>
 	</div>
 </div>
-{{/if}}
+{{/if}} --}}
 
 {{outlet}}
