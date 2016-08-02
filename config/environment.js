@@ -47,6 +47,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.baseURL = '/materialize-health'
     ENV.locationType = 'hash';
   }
 
