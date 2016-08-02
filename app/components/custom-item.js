@@ -32,28 +32,33 @@ export default Ember.Component.extend({
 
 		createItem() {
 			// let caloriesPath = 'healthData.calories';
+			if (!$('#custom-item-name').val() || $('#custom-item-calories')) {
+				alert('Please enter an item name and calorie count.');
+			}
 
-			// Turn the input into a number
-			let inputCalories = Number($('#custom-item-calories').val());
+			else {
+				// Turn the input into a number
+				let inputCalories = Number($('#custom-item-calories').val());
 
-  			// this.set(caloriesPath, this.get(caloriesPath) + Math.round(inputCalories));
+	  			// this.set(caloriesPath, this.get(caloriesPath) + Math.round(inputCalories));
 
-  			this.set('healthData.foodAdded', true);
+	  			this.set('healthData.foodAdded', true);
 
-			let store = this.get('store');
+				let store = this.get('store');
 
-			let customItem = store.createRecord('item', {
-				name: $('#custom-item-name').val(),
-				calories: inputCalories
-			});
+				let customItem = store.createRecord('item', {
+					name: $('#custom-item-name').val(),
+					calories: inputCalories
+				});
 
-			store.findRecord('calories', 'userCals')
-			.then(function(userCals) {
-				userCals.set('total', userCals.get('total') + inputCalories);
-				userCals.save();
-			});
+				store.findRecord('calories', 'userCals')
+				.then(function(userCals) {
+					userCals.set('total', userCals.get('total') + inputCalories);
+					userCals.save();
+				});
 
-			customItem.save();
+				customItem.save();
+			}
 		}
 	}
 });
