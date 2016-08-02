@@ -6,7 +6,12 @@ export default Ember.Route.extend({
 
 	// Hook the health-data service in as a model to use on my page
 	model() {
-		return this.store.findAll('item');
+		// return this.store.findAll('item');
+		return Ember.RSVP.hash({
+			items: this.store.findAll('item'),
+			healthData: this.get('healthData'),
+			foodAdded: this.store.find('foodAdded', 'userFoodAddedStatus')
+		});
 	},
 
 	actions: {
@@ -26,10 +31,6 @@ export default Ember.Route.extend({
   			// still accurately reflects our data. If length is zero
   			// set the foodAdded property to false in order to remove
   			// the table from our display
-  			if ($('.item-row').length === 0) {
-  				self.set('healthData.foodAdded', false);
-  			}
-
   			let store = this.get('store');
 
   			store.findRecord('calories', 'userCals')
@@ -40,6 +41,16 @@ export default Ember.Route.extend({
 			});
 
   			item.destroyRecord();
+
+  			if ($('.item-row').length === 0) {
+  				// self.set('healthData.foodAdded', false);
+  				// store.find('foodAdded', 'userFoodAddedStatus')
+  				store.findRecord('foodAdded', 'userFoodAddedStatus')
+				.then(function(userFoodAddedStatus) {
+					userFoodAddedStatus.set('status', false);
+					userFoodAddedStatus.save();
+				});
+  			}
 		},
 
 		hideResults() {

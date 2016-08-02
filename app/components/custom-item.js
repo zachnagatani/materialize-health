@@ -32,7 +32,7 @@ export default Ember.Component.extend({
 
 		createItem() {
 			// let caloriesPath = 'healthData.calories';
-			if (!$('#custom-item-name').val() || !$('#custom-item-calories')) {
+			if (!$('#custom-item-name').val() || !$('#custom-item-calories').val()) {
 				alert('Please enter an item name and calorie count.');
 			}
 
@@ -40,11 +40,14 @@ export default Ember.Component.extend({
 				// Turn the input into a number
 				let inputCalories = Number($('#custom-item-calories').val());
 
-	  			// this.set(caloriesPath, this.get(caloriesPath) + Math.round(inputCalories));
-
-	  			this.set('healthData.foodAdded', true);
-
 				let store = this.get('store');
+
+	  			store.findRecord('foodAdded', 'userFoodAddedStatus')
+				.then(function(userFoodAddedStatus) {
+					// userFoodAddedStatus.set('status', true);
+					// userFoodAddedStatus.save();
+					console.log(userFoodAddedStatus);
+				});
 
 				let customItem = store.createRecord('item', {
 					name: $('#custom-item-name').val(),

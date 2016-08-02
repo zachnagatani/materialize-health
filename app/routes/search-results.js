@@ -25,7 +25,13 @@ export default Ember.Route.extend({
 			// contained the food item selected by the user
   			// this.set(caloriesPath, this.get(caloriesPath) + Math.round(resultsPath[index].fields.nf_calories));
 
-  			this.set('healthData.foodAdded', true);
+  			// this.set('healthData.foodAdded', true);
+
+  			store.findRecord('foodAdded', 'userFoodAddedStatus')
+			.then(function(userFoodAddedStatus) {
+				userFoodAddedStatus.set('status', true);
+				userFoodAddedStatus.save();
+			});
 
   			let newItem = store.createRecord('item', {
   				name: resultsPath[index].fields.item_name,
