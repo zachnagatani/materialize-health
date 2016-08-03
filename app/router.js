@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('search-results');
   this.route('todays-food');
   this.route('add-custom-item');
+  this.route('login');
 });
 
 export default Router;
