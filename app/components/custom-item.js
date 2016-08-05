@@ -38,7 +38,9 @@ export default Ember.Component.extend({
 
 			else {
 				// Turn the input into a number
-				let inputCalories = Number($('#custom-item-calories').val());
+				let inputCalories = Math.round(Number($('#custom-item-calories').val()));
+
+				console.log(inputCalories);
 
 				let store = this.get('store');
 

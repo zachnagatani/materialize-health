@@ -35,12 +35,12 @@ export default Ember.Route.extend({
 
   			let newItem = store.createRecord('item', {
   				name: resultsPath[index].fields.item_name,
-  				calories: resultsPath[index].fields.nf_calories
+  				calories: Math.round(resultsPath[index].fields.nf_calories)
   			});
 
   			store.findRecord('calories', 'userCals')
 			.then(function(userCals) {
-				userCals.set('total', userCals.get('total') + resultsPath[index].fields.nf_calories);
+				userCals.set('total', userCals.get('total') + Math.round(resultsPath[index].fields.nf_calories));
 				userCals.save();
 				console.log(userCals.get('total'));
 			});
